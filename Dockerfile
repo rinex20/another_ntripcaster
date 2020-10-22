@@ -7,6 +7,8 @@ WORKDIR /root
 RUN mkdir -p /etc/ntripcaster
 COPY config.json /etc/ntripcaster
 
+RUN cd /root
+
 RUN apt-get install git libev-dev -y
 
 RUN git clone https://github.com/tisyang/ntripcaster.git \
