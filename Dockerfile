@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 
-ENV ver=1.0
+ENV ver=0.1
 LABEL maintainer="Jacky <cheungyong@gmail.com>"
 
 WORKDIR /root
