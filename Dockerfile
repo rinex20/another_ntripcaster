@@ -17,6 +17,7 @@ RUN git clone https://github.com/tisyang/ntripcaster.git \
   && make \
   && cp ntripcaster /usr/local/bin/
 
+#clear 
 RUN rm -R /root/ntripcaster
   
 
