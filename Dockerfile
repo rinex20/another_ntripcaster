@@ -22,8 +22,7 @@ RUN git clone https://github.com/tisyang/ntripcaster.git \
 #clear 
 RUN rm -R /root/ntripcaster
   
-
-
+#default port:2101,json config file
 EXPOSE 2101
 VOLUME /etc/ntripcaster
 CMD [ "/usr/local/bin/ntripcaster", "/etc/ntripcaster/config.json", ""]
