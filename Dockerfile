@@ -20,9 +20,10 @@ RUN git clone https://github.com/tisyang/ntripcaster.git
 RUN cd /root/ntripcaster \
   && git submodule update --init 
 
-RUN mkdir -p /root/ntripcaster/build && cd /root/ntripcaster/build
+RUN mkdir -p /root/ntripcaster/build 
 
-RUN cmake /root/ntripcaster && make
+RUN cd /root/ntripcaster/build && cmake ..
+RUN cd /root/ntripcaster/build && make
 
 RUN cp /root/ntripcaster/build/ntripcaster /usr/local/bin/
 
