@@ -14,13 +14,16 @@ RUN apt-get update \
   && apt-get install -y apt-utils \
   && apt-get install -y libev-dev
 
-RUN git clone https://github.com/tisyang/ntripcaster.git \
-  && cd ntripcaster \
-  && git submodule update --init \
-  && mkdir build && cd build \
-  && cmake .. \
-  && make \
-  && cp ntripcaster /usr/local/bin/
+RUN git clone https://github.com/tisyang/ntripcaster.git
+
+RUN cd /root/ntripcaster \
+  && git submodule update --init 
+
+RUN mkdir -p /root/ntripcaster/build && cd /root/ntripcaster/build
+
+RUN cmake .. && make 
+
+RUN cp /root/ntripcaster/build/ntripcaster /usr/local/bin/
 
 #clear 
 RUN rm -R /root/ntripcaster
