@@ -1,9 +1,0 @@
-# action.yml
-name: 'Another_ntripcaster'
-description: 'another ntripcaster'
-
-runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.who-to-greet }}
