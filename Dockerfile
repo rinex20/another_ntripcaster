@@ -22,7 +22,7 @@ RUN cd /root/ntripcaster \
 
 RUN mkdir -p /root/ntripcaster/build && cd /root/ntripcaster/build
 
-RUN cmake /root/ntripcaster && make 
+RUN cmake -D CMAKE_CXX_COMPILER="/usr/bin/g++" /root/ntripcaster && make 
 
 RUN cp /root/ntripcaster/build/ntripcaster /usr/local/bin/
 
