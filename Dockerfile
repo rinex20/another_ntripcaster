@@ -22,7 +22,7 @@ RUN cd /root/ntripcaster \
 
 RUN mkdir -p /root/ntripcaster/build && cd /root/ntripcaster/build
 
-RUN cmake .. && make 
+RUN cmake /root/ntripcaster && make 
 
 RUN cp /root/ntripcaster/build/ntripcaster /usr/local/bin/
 
