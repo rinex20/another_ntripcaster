@@ -29,7 +29,6 @@ RUN cp /root/ntripcaster/build/ntripcaster /usr/local/bin/
 
 #clear 
 RUN rm -R /root/ntripcaster
-RUN apt-get autoremove -y git cmake libev-dev g++
   
 #default port:2101,json config file
 EXPOSE 2101
