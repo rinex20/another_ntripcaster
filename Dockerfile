@@ -13,7 +13,7 @@ RUN apt-get update -y
 
 RUN apt-get install -y apt-utils
 
-RUN apt-get install -y git cmake libev-dev
+RUN apt-get install -y git cmake libev-dev g++
 
 RUN git clone https://github.com/tisyang/ntripcaster.git
 
@@ -22,7 +22,7 @@ RUN cd /root/ntripcaster \
 
 RUN mkdir -p /root/ntripcaster/build && cd /root/ntripcaster/build
 
-RUN cmake -D CMAKE_CXX_COMPILER="/usr/bin/g++" /root/ntripcaster && make 
+RUN cmake /root/ntripcaster && make
 
 RUN cp /root/ntripcaster/build/ntripcaster /usr/local/bin/
 
