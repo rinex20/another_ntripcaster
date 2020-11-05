@@ -10,7 +10,8 @@ COPY config.json /etc/ntripcaster
 RUN cd /root
 
 RUN apt-get update \
-  && apt-get install -y git \
+  && apt-get install -y git cmake \
+  && apt-get install -y apt-utils \
   && apt-get install -y libev-dev
 
 RUN git clone https://github.com/tisyang/ntripcaster.git \
