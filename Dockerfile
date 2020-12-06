@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:18.04 as builder
 
 ENV ver=0.1
 LABEL maintainer="Jacky <cheungyong@gmail.com>"
@@ -29,6 +29,18 @@ RUN cp /root/ntripcaster/build/ntripcaster /usr/local/bin/
 
 #clear 
 RUN rm -R /root/ntripcaster
+
+
+FROM ubuntu:18.04
+
+ENV ver=0.1
+LABEL maintainer="Jacky <cheungyong@gmail.com>"
+
+RUN apt-get update \
+  && apt-get install -y libev-dev
+  
+COPY --from=builder /usr/local/bin/ntripcaster /usr/local/bin/
+
   
 #default port:2101,json config file
 EXPOSE 2101
