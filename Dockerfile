@@ -1,5 +1,6 @@
 FROM --platform=${TARGETPLATFORM} ubuntu:18.04 as builder
 
+ARG TARGETPLATFORM
 ENV ver=0.1
 LABEL maintainer="Jacky <cheungyong@gmail.com>"
 
