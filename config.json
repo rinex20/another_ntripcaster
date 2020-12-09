@@ -10,6 +10,6 @@
 		"gnss:123456": "*"
 	},
 	"tokens_source": {
-		"datagnss4u": "*"
+		"test": "*"
 	}
 }
