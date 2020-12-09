@@ -1,38 +1,30 @@
-FROM --platform=${TARGETPLATFORM} ubuntu:18.04 as builder
+FROM --platform=$BUILDPLATFORM ubuntu:18.04 as builder
 
+ARG BUILDPLATFORM
 ARG TARGETPLATFORM
 ENV ver=0.1
 LABEL maintainer="Jacky <cheungyong@gmail.com>"
+
+RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM" > /log
 
 WORKDIR /root
 RUN mkdir -p /etc/ntripcaster
 COPY config.json /etc/ntripcaster
 
-RUN cd /root
 
-RUN apt-get update -y 
+RUN apt-get update \
+  && apt-get install -y apt-utils \
+  && apt-get install -y git cmake libev-dev g++ \
+  && git clone https://github.com/tisyang/ntripcaster.git \
+  && cd /root/ntripcaster \
+  && git submodule update --init \ 
+  && mkdir -p /root/ntripcaster/build \ 
+  && (cd /root/ntripcaster/build; cmake ..) \
+  && (cd /root/ntripcaster/build; make) \
+  && cp /root/ntripcaster/build/ntripcaster /usr/local/bin/ \
+  && rm -R /root/ntripcaster
 
-RUN apt-get install -y apt-utils
-
-RUN apt-get install -y git cmake libev-dev g++
-
-RUN git clone https://github.com/tisyang/ntripcaster.git
-
-RUN cd /root/ntripcaster \
-  && git submodule update --init 
-
-RUN mkdir -p /root/ntripcaster/build 
-
-RUN cd /root/ntripcaster/build && cmake ..
-RUN cd /root/ntripcaster/build && make
-
-RUN cp /root/ntripcaster/build/ntripcaster /usr/local/bin/
-
-#clear 
-RUN rm -R /root/ntripcaster
-
-
-FROM --platform=${TARGETPLATFORM} ubuntu:18.04
+FROM ubuntu:18.04
 
 ENV ver=0.1
 LABEL maintainer="Jacky <cheungyong@gmail.com>"
