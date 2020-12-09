@@ -5,9 +5,11 @@
 	"max_source": 0,
 	"max_pending": 10,
 	"tokens_client": {
-		"test:test": "*"
+		"test:test": "*",
+		"gps:123456": "*",
+		"gnss:123456": "*"
 	},
 	"tokens_source": {
-		"test": "*"
+		"datagnss4u": "*"
 	}
 }
