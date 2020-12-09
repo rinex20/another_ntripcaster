@@ -1,4 +1,4 @@
-FROM ubuntu:18.04 as builder
+FROM --platform=${TARGETPLATFORM} ubuntu:18.04 as builder
 
 ENV ver=0.1
 LABEL maintainer="Jacky <cheungyong@gmail.com>"
@@ -31,7 +31,7 @@ RUN cp /root/ntripcaster/build/ntripcaster /usr/local/bin/
 RUN rm -R /root/ntripcaster
 
 
-FROM ubuntu:18.04
+FROM --platform=${TARGETPLATFORM} ubuntu:18.04
 
 ENV ver=0.1
 LABEL maintainer="Jacky <cheungyong@gmail.com>"
