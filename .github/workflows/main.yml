@@ -1,0 +1,29 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Build ntripcaster
+
+# Controls when the action will run. 
+on:
+  release:
+    types: [published]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@master
+      - name: Build and publish image
+        uses: ilteoood/docker_buildx@master
+        with:
+          publish: true
+          imageName: 你的docker id/你的镜像名
+          platform: linux/amd64,linux/arm64,linux/arm/v7 # 你准备构建的镜像平台
+          tag: latest # 默认latest，可以针对平台，修改tag
+          dockerUser: ${{ secrets.DOCKER_USERNAME }} # docker hub userid
+          dockerPassword: ${{ secrets.DOCKER_PASSWORD }}
