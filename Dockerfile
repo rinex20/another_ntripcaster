@@ -4,7 +4,7 @@ ENV ver=0.1
 LABEL maintainer="Jacky <cheungyong@gmail.com>"
 
 WORKDIR /root
-COPY config.json /root/
+COPY config.json /root
 
 RUN apt-get update \
   && apt-get install -y apt-utils \
@@ -18,7 +18,7 @@ RUN apt-get update \
   && cp /root/ntripcaster/build/ntripcaster /usr/local/bin/ \
   && mkdir -p /etc/ntripcaster \
   && cp /root/config.json /etc/ntripcaster/ \
-  && rm -rf /root/ntripcaster
+  && rm -R /root/ntripcaster
 
 #FROM ubuntu:18.04
 
