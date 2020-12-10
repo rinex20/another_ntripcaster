@@ -34,4 +34,4 @@ RUN apt-get update \
 #default port:2101,json config file
 EXPOSE 2101
 VOLUME /etc/ntripcaster
-CMD [ "/usr/local/bin/ntripcaster", "/etc/ntripcaster/config.json", ""]
+ENTRYPOINT [ "/usr/local/bin/ntripcaster", "/etc/ntripcaster/config.json", ""]
