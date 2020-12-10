@@ -1,16 +1,10 @@
 FROM ubuntu:18.04 as builder
 
-ARG BUILDPLATFORM
-ARG TARGETPLATFORM
 ENV ver=0.1
 LABEL maintainer="Jacky <cheungyong@gmail.com>"
 
-RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM" > /log
-
 WORKDIR /root
-RUN mkdir -p /etc/ntripcaster
-COPY config.json /etc/ntripcaster
-
+COPY config.json /root/
 
 RUN apt-get update \
   && apt-get install -y apt-utils \
@@ -22,17 +16,19 @@ RUN apt-get update \
   && (cd /root/ntripcaster/build; cmake ..) \
   && (cd /root/ntripcaster/build; make) \
   && cp /root/ntripcaster/build/ntripcaster /usr/local/bin/ \
-  && rm -R /root/ntripcaster
+  && mkdir -p /etc/ntripcaster \
+  && cp /root/config.json /etc/ntripcaster/ \
+  && rm -rf /root/ntripcaster
 
-FROM ubuntu:18.04
+#FROM ubuntu:18.04
 
-ENV ver=0.1
-LABEL maintainer="Jacky <cheungyong@gmail.com>"
+#ENV ver=0.1
+#LABEL maintainer="Jacky <cheungyong@gmail.com>"
 
-RUN apt-get update \
-  && apt-get install -y libev-dev
+#RUN apt-get update \
+#  && apt-get install -y libev-dev
   
-COPY --from=builder /usr/local/bin/ntripcaster /usr/local/bin/
+#COPY --from=builder /usr/local/bin/ntripcaster /usr/local/bin/
 
   
 #default port:2101,json config file
