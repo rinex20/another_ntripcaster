@@ -24,10 +24,10 @@ FROM ubuntu:18.04
 ENV ver=0.1
 #LABEL maintainer="Jacky <cheungyong@gmail.com>"
 
-RUN apt-get update && \
-    apt-get install -y libev-dev && \
-    mkdir -p /etc/ntripcaster && \
-    apt-get clean
+RUN apt-get update \
+  && apt-get install -y libev-dev \
+  && mkdir -p /etc/ntripcaster \
+  && apt-get clean
   
 #COPY --from=builder /usr/local/bin/ntripcaster /usr/local/bin/
 COPY config.json /etc/ntripcaster/
