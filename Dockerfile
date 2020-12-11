@@ -4,7 +4,6 @@ ENV ver=0.1
 LABEL maintainer="Jacky <cheungyong@gmail.com>"
 
 WORKDIR /root
-COPY config.json /root
 
 RUN apt-get update \
   && apt-get install -y apt-utils \
@@ -20,16 +19,15 @@ RUN apt-get update \
   && cp /root/config.json /etc/ntripcaster/ \
   && rm -R /root/ntripcaster
 
-#FROM ubuntu:18.04
+FROM ubuntu:18.04
 
-#ENV ver=0.1
+ENV ver=0.1
 #LABEL maintainer="Jacky <cheungyong@gmail.com>"
 
-#RUN apt-get update \
-#  && apt-get install -y libev-dev
+RUN apt-get install -y libev-dev && mkdir -p /etc/ntripcaster
   
 #COPY --from=builder /usr/local/bin/ntripcaster /usr/local/bin/
-
+COPY config.json /etc/ntripcaster/
   
 #default port:2101,json config file
 EXPOSE 2101
